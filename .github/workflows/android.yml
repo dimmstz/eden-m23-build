@@ -21,20 +21,13 @@ jobs:
 
       - uses: android-actions/setup-android@v3
 
-      - uses: nttld/setup-ndk@v1
-        with:
-          ndk-version: r26d
-
       - name: Grant permissions
         working-directory: ./src/android
         run: chmod +x gradlew || true
 
-      - name: Configure NDK Path
-        run: echo "ndk.dir=$ANDROID_NDK_HOME" > src/android/local.properties
-
       - name: Build APK
         working-directory: ./src/android
-        run: ./gradlew assembleRelease -Pandroid.injected.build.abi=arm64-v8a
+        run: ./gradlew assembleRelease
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
