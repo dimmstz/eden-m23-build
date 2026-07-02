@@ -1,0 +1,127 @@
+./src/android/app/src/main/java/org/yuzu/yuzu_emu/NativeLibrary.kt:     * Returns Vulkan driver version / API version / GPU model
+./src/android/app/src/main/java/org/yuzu/yuzu_emu/NativeLibrary.kt:    external fun getVulkanDriverVersion(): String
+./src/android/app/src/main/java/org/yuzu/yuzu_emu/NativeLibrary.kt:    external fun getVulkanApiVersion(): String
+./src/android/app/src/main/java/org/yuzu/yuzu_emu/fragments/SystemInfoDialogFragment.kt:                val vulkanApi = NativeLibrary.getVulkanApiVersion()
+./src/android/app/src/main/java/org/yuzu/yuzu_emu/fragments/SystemInfoDialogFragment.kt:                appendLine("Vulkan API: $vulkanApi")
+./src/android/app/src/main/java/org/yuzu/yuzu_emu/fragments/SystemInfoDialogFragment.kt:                val vulkanDriver = NativeLibrary.getVulkanDriverVersion()
+./src/android/app/src/main/java/org/yuzu/yuzu_emu/model/DriverViewModel.kt:                NativeLibrary.getVulkanDriverVersion().takeIf { !it.isNullOrEmpty() } ?: systemDriverTitle,
+./src/android/app/src/main/java/org/yuzu/yuzu_emu/model/DriverViewModel.kt:        val systemDriverVersion = NativeLibrary.getVulkanDriverVersion().takeIf { !it.isNullOrEmpty() } ?: systemDriverTitle
+./src/android/app/src/main/java/org/yuzu/yuzu_emu/utils/Log.kt:        NativeLibrary.getVulkanDriverVersion().split('\n').forEach {
+./src/android/app/src/main/java/org/yuzu/yuzu_emu/utils/Log.kt:            info("Vulkan Driver: - $it")
+./src/android/app/src/main/java/org/yuzu/yuzu_emu/utils/Log.kt:        NativeLibrary.getVulkanApiVersion().split('\n').forEach {
+./src/android/app/src/main/java/org/yuzu/yuzu_emu/utils/Log.kt:            info("Vulkan API Version: - $it")
+./src/android/app/src/main/java/org/yuzu/yuzu_emu/NativeLibrary.kt.bak:     * Returns Vulkan driver version / API version / GPU model
+./src/android/app/src/main/java/org/yuzu/yuzu_emu/NativeLibrary.kt.bak:    external fun getVulkanDriverVersion(): String
+./src/android/app/src/main/java/org/yuzu/yuzu_emu/NativeLibrary.kt.bak:    external fun getVulkanApiVersion(): String
+./src/android/app/src/main/jni/native.cpp:    Vulkan::vk::InstanceDispatch dld;
+./src/android/app/src/main/jni/native.cpp:    Vulkan::vk::Instance vk_instance = Vulkan::CreateInstance(
+./src/android/app/src/main/jni/native.cpp:    auto surface = Vulkan::CreateSurface(vk_instance, window->GetWindowInfo());
+./src/android/app/src/main/jni/native.cpp:    auto device = Vulkan::CreateDevice(vk_instance, dld, *surface);
+./src/android/app/src/main/jni/native.cpp:    auto version_string = "1.1.0"; //Assume lowest Vulkan level
+./src/android/app/src/main/jni/native.cpp:    Vulkan::vk::InstanceDispatch dld;
+./src/android/app/src/main/jni/native.cpp:    Vulkan::vk::Instance vk_instance = Vulkan::CreateInstance(
+./src/android/app/src/main/jni/native.cpp:    auto surface = Vulkan::CreateSurface(vk_instance, window->GetWindowInfo());
+./src/android/app/src/main/jni/native.cpp:    auto device = Vulkan::CreateDevice(vk_instance, dld, *surface);
+./src/android/app/src/main/jni/native.cpp:VkPhysicalDeviceProperties GetVulkanDeviceProperties() {
+./src/android/app/src/main/jni/native.cpp:    Vulkan::vk::InstanceDispatch dld;
+./src/android/app/src/main/jni/native.cpp:    // TODO: warn the user that Vulkan is unavailable rather than hard crash
+./src/android/app/src/main/jni/native.cpp:    const auto instance = Vulkan::CreateInstance(library, dld, VK_API_VERSION_1_1);
+./src/android/app/src/main/jni/native.cpp:    const Vulkan::vk::PhysicalDevice physical_device(physical_devices[0], dld);
+./src/android/app/src/main/jni/native.cpp:jstring Java_org_yuzu_yuzu_1emu_NativeLibrary_getVulkanDriverVersion(JNIEnv* env, jobject jobj) {
+./src/android/app/src/main/jni/native.cpp:        const auto props = GetVulkanDeviceProperties();
+./src/android/app/src/main/jni/native.cpp:        // Standard Vulkan version encoding for other vendors
+./src/android/app/src/main/jni/native.cpp:jstring Java_org_yuzu_yuzu_1emu_NativeLibrary_getVulkanApiVersion(JNIEnv* env, jobject jobj) {
+./src/android/app/src/main/jni/native.cpp:        const auto props = GetVulkanDeviceProperties();
+./src/android/app/src/main/jni/native.cpp:    const auto props = GetVulkanDeviceProperties();
+./src/android/app/src/main/jni/native_freedreno.cpp: * for the Turnip Vulkan driver on Adreno GPUs.
+./src/android/app/src/main/res/values-ar/strings.xml:    <string name="pipeline_worker_cores_description">قم بإدارة عدد النوى المستخدمة لبناء خطوط أنابيب Vulkan، فالقيمة الأعلى ستحسن أداء تجميع خط الأنابيب ولكن درجات الحرارة سترتفع أيضًا.</string>
+./src/android/app/src/main/res/values-ar/strings.xml:    <string name="vulkan_driver_version">إصدار برنامج تشغيل Vulkan</string>
+./src/android/app/src/main/res/values-ar/strings.xml:    <string name="gpu_log_vulkan_calls">تسجيل استدعاءات واجهة برمجة تطبيقات Vulkan</string>
+./src/android/app/src/main/res/values-ar/strings.xml:    <string name="gpu_log_vulkan_calls_description">تتبع جميع استدعاءات واجهة برمجة تطبيقات Vulkan في المخزن المؤقت الحلقي</string>
+./src/android/app/src/main/res/values-ar/strings.xml:    <string name="gpu_log_ring_buffer_size_description">عدد استدعاءات Vulkan الأخيرة المراد تتبعها (الافتراضي: 512)</string>
+./src/android/app/src/main/res/values-ar/strings.xml:    <string name="driver_shader_wipe_dialog_message">لقد قام Eden تلقائيًا بمسح جميع ذاكرات التخزين المؤقتة لبرامج التظليل للحفاظ على صحة خط أنابيب Vulkan. وهذا ضروري عند تبديل برامج تشغيل وحدة معالجة الرسومات لمنع حدوث أعطال وتلف الرسومات. قد تواجه بعض التقطعات أثناء إعادة بناء التظليل.</string>
+./src/android/app/src/main/res/values-cs/strings.xml:    <string name="vulkan_driver_version">Verze ovladače Vulkan</string>
+./src/android/app/src/main/res/values-de/strings.xml:    <string name="pipeline_worker_cores_description">Lege die Anzahl der Kerne fest, die für die Erstellung von Vulkan-Rohrleitungen verwendet werden sollen. Ein höherer Wert verbessert die Kompilierungsleistung der Rohrleitung, führt jedoch auch zu einem Anstieg der Temperaturen.</string>
+./src/android/app/src/main/res/values-de/strings.xml:    <string name="vulkan_driver_version">Vulkan-Treiberversion</string>
+./src/android/app/src/main/res/values-de/strings.xml:    <string name="driver_shader_wipe_dialog_message">Eden hat automatisch alle Shader-Caches geleert, um die Vulkan-Pipeline-Validierung aufrechtzuerhalten. Dies ist beim Wechsel des GPU-Treibers erforderlich, um Abstürze und Grafikfehler zu vermeiden. Während die Shader neu gebaut werden, kann es zu kurzen Rucklern kommen.</string>
+./src/android/app/src/main/res/values-es/strings.xml:    <string name="pipeline_worker_cores_description">Gestiona la cantidad de núcleos usados para la construcción de canalizaciones de Vulkan; un valor más alto mejorará el rendimiento de la contrucción de canalización, pero también aumentarán las temperaturas.</string>
+./src/android/app/src/main/res/values-es/strings.xml:    <string name="vulkan_driver_version">Versión del controlador de Vulkan</string>
+./src/android/app/src/main/res/values-es/strings.xml:    <string name="gpu_log_vulkan_calls">Registros de llamadas del API de Vulkan</string>
+./src/android/app/src/main/res/values-es/strings.xml:    <string name="gpu_log_vulkan_calls_description">Rastrear todas las llamadas del API de Vulkan en el búfer circular</string>
+./src/android/app/src/main/res/values-es/strings.xml:    <string name="gpu_log_ring_buffer_size_description">Número de llamadas recientes de Vulkan para rastrear (por defecto: 512)</string>
+./src/android/app/src/main/res/values-es/strings.xml:    <string name="driver_shader_wipe_dialog_message">Eden ha limpiado automáticamente todos los sombreadores guardados para mantener la canalización de Vulkan válida. Esto es esencial al cambiar o actualizar los controladores de la GPU para prevenir errores y fallos gráficos. Es posible que experimente algunas interrupciones durante la reconstrucción de los sombreadores.</string>
+./src/android/app/src/main/res/values-fa/strings.xml:    <string name="renderer_vulkan">Vulkan</string>
+./src/android/app/src/main/res/values-fr/strings.xml:    <string name="vulkan_driver_version">Version du pilote Vulkan</string>
+./src/android/app/src/main/res/values-fr/strings.xml:    <string name="gpu_log_vulkan_calls">Journaliser les appels API Vulkan</string>
+./src/android/app/src/main/res/values-fr/strings.xml:    <string name="gpu_log_ring_buffer_size_description">Nombre d\'appels Vulkans récents à monitorer (par défaut : 512)</string>
+./src/android/app/src/main/res/values-pl/strings.xml:    <string name="vulkan_driver_version">Wersja sterownika Vulkan</string>
+./src/android/app/src/main/res/values-pl/strings.xml:    <string name="driver_shader_wipe_dialog_message">Eden automatycznie wyczyścił wszystkie pamięci podręczne shaderów, aby zachować poprawność walidacji potoków Vulkan. Jest to wymagane przy zmianie sterowników GPU, aby zapobiec awariom i błędom graficznym. Podczas ponownego budowania shaderów możesz doświadczyć chwilowych przycięć.</string>
+./src/android/app/src/main/res/values-pt-rBR/strings.xml:    <string name="vulkan_driver_version">Versão do Driver Vulkan</string>
+./src/android/app/src/main/res/values-pt-rBR/strings.xml:    <string name="driver_shader_wipe_dialog_message">O Eden limpou automaticamente todos os caches de shader para manter a validação do pipeline Vulkan. Isso é necessário ao trocar drivers de GPU para evitar travamentos e corrupção gráfica. Você pode notar alguns engasgos enquanto os shaders são reconstruídos.</string>
+./src/android/app/src/main/res/values-ru/strings.xml:    <string name="pipeline_worker_cores_description">Позволяет настроить количество ядер, задействованных при построении конвейеров Vulkan. Чем выше значение, тем быстрее будет компиляция конвейеров, однако это приведёт к повышению температуры устройства.</string>
+./src/android/app/src/main/res/values-ru/strings.xml:    <string name="vulkan_driver_version">Версия драйвера Vulkan</string>
+./src/android/app/src/main/res/values-ru/strings.xml:    <string name="gpu_log_vulkan_calls">Записывать вызовы Vulkan API</string>
+./src/android/app/src/main/res/values-ru/strings.xml:    <string name="gpu_log_vulkan_calls_description">Отслеживать все вызовы Vulkan API в кольцевом буфере</string>
+./src/android/app/src/main/res/values-ru/strings.xml:    <string name="gpu_log_ring_buffer_size_description">Количество последних вызовов Vulkan для отслеживания (по умолчанию: 512)</string>
+./src/android/app/src/main/res/values-ru/strings.xml:    <string name="driver_shader_wipe_dialog_message">Eden автоматически очистил все кэши шейдеров для поддержания валидации Vulkan-конвейера. Это необходимо при переключении драйверов графического процессора для предотвращения сбоев и графических артефактов. Вы можете столкнуться с некоторыми подтормаживаниями во время перекомпиляции шейдеров.</string>
+./src/android/app/src/main/res/values-uk/strings.xml:    <string name="pipeline_worker_cores_description">Керує кількістю ядер, що використовуються для збірки конвеєрів Vulkan. Вище значення покращить продуктивність компіляції конвеєра, але також підвищить температуру.</string>
+./src/android/app/src/main/res/values-uk/strings.xml:    <string name="vulkan_driver_version">Версія драйвера Vulkan</string>
+./src/android/app/src/main/res/values-uk/strings.xml:    <string name="gpu_log_vulkan_calls">Записувати виклики API Vulkan</string>
+./src/android/app/src/main/res/values-uk/strings.xml:    <string name="gpu_log_vulkan_calls_description">Відстежувати всі виклики API Vulkan у кільцевому буфері</string>
+./src/android/app/src/main/res/values-uk/strings.xml:    <string name="gpu_log_ring_buffer_size_description">Кількість останніх викликів Vulkan для відстеження (стандартно: 512)</string>
+./src/android/app/src/main/res/values-uk/strings.xml:    <string name="driver_shader_wipe_dialog_message">Eden автоматично очистив увесь кеш шейдерів, щоб забезпечити перевірку конвеєра Vulkan. Це необхідно при зміні драйверів ГП, щоб уникнути збоїв і графічних помилок.  У вас можуть виникнути мікропідвисання під час повторної компіляції шейдерів.</string>
+./src/android/app/src/main/res/values-zh-rCN/strings.xml:    <string name="pipeline_worker_cores_description">管理用于构建 Vulkan 管线的核心数量，数值越高则管线编译性能越好，但温度也会随之升高。</string>
+./src/android/app/src/main/res/values-zh-rCN/strings.xml:    <string name="vulkan_driver_version">Vulkan 驱动版本</string>
+./src/android/app/src/main/res/values-zh-rCN/strings.xml:    <string name="gpu_log_vulkan_calls">记录 Vulkan API 调用</string>
+./src/android/app/src/main/res/values-zh-rCN/strings.xml:    <string name="gpu_log_vulkan_calls_description">在环形缓冲区中跟踪所有 Vulkan API 调用</string>
+./src/android/app/src/main/res/values-zh-rCN/strings.xml:    <string name="gpu_log_ring_buffer_size_description">要跟踪的最近 Vulkan 调用次数(默认值: 512)</string>
+./src/android/app/src/main/res/values-zh-rCN/strings.xml:    <string name="driver_shader_wipe_dialog_message">Eden 已自动清空所有着色器缓存，以维持 Vulkan 管线验证流程。在切换 GPU 驱动程序时，此操作是必要的，可防止崩溃和画面异常。在着色器重构期间，您可能会感受到些许卡顿。</string>
+./src/android/app/src/main/res/values-zh-rTW/strings.xml:    <string name="vulkan_driver_version">Vulkan驅動程式版本</string>
+./src/android/app/src/main/res/values-zh-rTW/strings.xml:    <string name="driver_shader_wipe_dialog_message">為了維持Vulkan管線驗證，Eden已自動清除所有著色器快取。為了預防閃退和圖形錯誤，這是必須的動作。因為著色器需要重新編譯，您在遊戲過程中可能會遇到些微卡頓的情況</string>
+./src/android/app/src/main/res/values/strings.xml:    <string name="pipeline_worker_cores_description">Manage the amount of cores used for building Vulkan pipelines, the higher value will improve pipeline compilation performance but temperatures will increase as well.</string>
+./src/android/app/src/main/res/values/strings.xml:    <string name="vulkan_driver_version">Vulkan Driver Version</string>
+./src/android/app/src/main/res/values/strings.xml:    <string name="gpu_log_vulkan_calls">Log Vulkan API Calls</string>
+./src/android/app/src/main/res/values/strings.xml:    <string name="gpu_log_vulkan_calls_description">Track all Vulkan API calls in ring buffer</string>
+./src/android/app/src/main/res/values/strings.xml:    <string name="gpu_log_ring_buffer_size_description">Number of recent Vulkan calls to track (default: 512)</string>
+./src/android/app/src/main/res/values/strings.xml:    <string name="driver_shader_wipe_dialog_message">Eden has automatically cleared all shader caches to maintain Vulkan pipeline validation. This is required when switching GPU drivers to prevent crashes and graphical corruption. You may experience some stuttering as shaders rebuild.</string>
+./src/android/app/src/main/res/values/strings.xml:    <string name="renderer_vulkan" translatable="false">Vulkan</string>
+./src/android/app/src/main/java/org/yuzu/yuzu_emu/features/fetcher/ReleaseAdapter.kt:import org.commonmark.renderer.html.HtmlRenderer
+./src/android/app/src/main/java/org/yuzu/yuzu_emu/features/fetcher/ReleaseAdapter.kt:        private val htmlRenderer = HtmlRenderer.builder().build()
+./src/android/app/src/main/java/org/yuzu/yuzu_emu/features/fetcher/ReleaseAdapter.kt:                        val html = htmlRenderer.render(doc)
+./src/android/app/src/main/jni/native.cpp:        m_system.Renderer().ReadRasterizer()->LoadDiskResources(
+./src/android/app/src/main/jni/native.cpp:        env, EmulationSession::GetInstance().System().GPU().Renderer().GetDeviceVendor());
+./src/android/app/src/main/res/values-ar/strings.xml:    <!-- Renderer Accuracy -->
+./src/android/app/src/main/res/values-ar/strings.xml:    <!-- Renderer VSync -->
+./src/android/app/src/main/res/values-ckb/strings.xml:    <!-- Renderer VSync -->
+./src/android/app/src/main/res/values-cs/strings.xml:    <!-- Renderer Accuracy -->
+./src/android/app/src/main/res/values-de/strings.xml:    <!-- Renderer Accuracy -->
+./src/android/app/src/main/res/values-de/strings.xml:    <!-- Renderer VSync -->
+./src/android/app/src/main/res/values-es/strings.xml:    <!-- Renderer Accuracy -->
+./src/android/app/src/main/res/values-es/strings.xml:    <!-- Renderer VSync -->
+./src/android/app/src/main/res/values-fa/strings.xml:    <!-- Renderer APIs -->
+./src/android/app/src/main/res/values-fa/strings.xml:    <!-- Renderer VSync -->
+./src/android/app/src/main/res/values-fr/strings.xml:    <!-- Renderer Accuracy -->
+./src/android/app/src/main/res/values-fr/strings.xml:    <!-- Renderer VSync -->
+./src/android/app/src/main/res/values-he/strings.xml:    <!-- Renderer VSync -->
+./src/android/app/src/main/res/values-hu/strings.xml:    <!-- Renderer VSync -->
+./src/android/app/src/main/res/values-id/strings.xml:    <!-- Renderer VSync -->
+./src/android/app/src/main/res/values-it/strings.xml:    <!-- Renderer VSync -->
+./src/android/app/src/main/res/values-ja/strings.xml:    <!-- Renderer VSync -->
+./src/android/app/src/main/res/values-ko/strings.xml:    <!-- Renderer VSync -->
+./src/android/app/src/main/res/values-nb/strings.xml:    <!-- Renderer VSync -->
+./src/android/app/src/main/res/values-pl/strings.xml:    <!-- Renderer Accuracy -->
+./src/android/app/src/main/res/values-pl/strings.xml:    <!-- Renderer VSync -->
+./src/android/app/src/main/res/values-pt-rBR/strings.xml:    <!-- Renderer VSync -->
+./src/android/app/src/main/res/values-pt-rPT/strings.xml:    <!-- Renderer VSync -->
+./src/android/app/src/main/res/values-ru/strings.xml:    <!-- Renderer Accuracy -->
+./src/android/app/src/main/res/values-ru/strings.xml:    <!-- Renderer VSync -->
+./src/android/app/src/main/res/values-sr/strings.xml:    <!-- Renderer VSync -->
+./src/android/app/src/main/res/values-uk/strings.xml:    <!-- Renderer Accuracy -->
+./src/android/app/src/main/res/values-uk/strings.xml:    <!-- Renderer VSync -->
+./src/android/app/src/main/res/values-vi/strings.xml:    <!-- Renderer VSync -->
+./src/android/app/src/main/res/values-zh-rCN/strings.xml:    <!-- Renderer Accuracy -->
+./src/android/app/src/main/res/values-zh-rCN/strings.xml:    <!-- Renderer VSync -->
+./src/android/app/src/main/res/values-zh-rTW/strings.xml:    <!-- Renderer VSync -->
+./src/android/app/src/main/res/values/strings.xml:    <!-- Renderer APIs -->
+./src/android/app/src/main/res/values/strings.xml:    <!-- Renderer Accuracy -->
+./src/android/app/src/main/res/values/strings.xml:    <!-- Renderer VSync -->

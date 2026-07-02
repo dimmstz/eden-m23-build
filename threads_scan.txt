@@ -1,0 +1,45 @@
+src/android/app/src/main/java/org/yuzu/yuzu_emu/NativeLibrary.kt:        emulationActivity.runOnUiThread { onCoreErrorImpl(title, message) }
+src/android/app/src/main/java/org/yuzu/yuzu_emu/NativeLibrary.kt:        emulationActivity.runOnUiThread {
+src/android/app/src/main/java/org/yuzu/yuzu_emu/activities/EmulationActivity.kt:    private var romSwapThreadStopped = false
+src/android/app/src/main/java/org/yuzu/yuzu_emu/activities/EmulationActivity.kt:                romSwapThreadStopped = false
+src/android/app/src/main/java/org/yuzu/yuzu_emu/activities/EmulationActivity.kt:                    romSwapThreadStopped = true
+src/android/app/src/main/java/org/yuzu/yuzu_emu/activities/EmulationActivity.kt:                        stoppingFragmentForSwap.notifyWhenEmulationThreadStops {
+src/android/app/src/main/java/org/yuzu/yuzu_emu/activities/EmulationActivity.kt:                                return@notifyWhenEmulationThreadStops
+src/android/app/src/main/java/org/yuzu/yuzu_emu/activities/EmulationActivity.kt:                            romSwapThreadStopped = true
+src/android/app/src/main/java/org/yuzu/yuzu_emu/activities/EmulationActivity.kt:                        romSwapThreadStopped = true
+src/android/app/src/main/java/org/yuzu/yuzu_emu/activities/EmulationActivity.kt:        if (!force && (!romSwapNativeStopped || !romSwapThreadStopped)) {
+src/android/app/src/main/java/org/yuzu/yuzu_emu/activities/EmulationActivity.kt:        romSwapThreadStopped = false
+src/android/app/src/main/java/org/yuzu/yuzu_emu/applets/keyboard/SoftwareKeyboard.kt:        NativeLibrary.sEmulationActivity.get()!!.runOnUiThread { executeNormalImpl(config) }
+src/android/app/src/main/java/org/yuzu/yuzu_emu/applets/keyboard/SoftwareKeyboard.kt:        NativeLibrary.sEmulationActivity.get()!!.runOnUiThread { executeInlineImpl(config) }
+src/android/app/src/main/java/org/yuzu/yuzu_emu/applets/web/WebBrowser.kt:        activity.runOnUiThread {
+src/android/app/src/main/java/org/yuzu/yuzu_emu/dialogs/LobbyBrowser.kt:        Thread {
+src/android/app/src/main/java/org/yuzu/yuzu_emu/disk_shader_cache/DiskShaderCacheProgress.kt:        emulationActivity.runOnUiThread {
+src/android/app/src/main/java/org/yuzu/yuzu_emu/features/settings/ui/SettingsFragment.kt:        Thread {
+src/android/app/src/main/java/org/yuzu/yuzu_emu/features/settings/ui/SettingsFragment.kt:            requireActivity().runOnUiThread {
+src/android/app/src/main/java/org/yuzu/yuzu_emu/fragments/EmulationFragment.kt:            requireActivity().runOnUiThread {
+src/android/app/src/main/java/org/yuzu/yuzu_emu/fragments/EmulationFragment.kt:            requireActivity().runOnUiThread {
+src/android/app/src/main/java/org/yuzu/yuzu_emu/fragments/EmulationFragment.kt:    fun notifyWhenEmulationThreadStops(onStopped: () -> Unit) {
+src/android/app/src/main/java/org/yuzu/yuzu_emu/fragments/EmulationFragment.kt:        val emuThread = runCatching { emulationState.emulationThread }.getOrNull()
+src/android/app/src/main/java/org/yuzu/yuzu_emu/fragments/EmulationFragment.kt:        if (emuThread == null || !emuThread.isAlive) {
+src/android/app/src/main/java/org/yuzu/yuzu_emu/fragments/EmulationFragment.kt:        Thread({
+src/android/app/src/main/java/org/yuzu/yuzu_emu/fragments/EmulationFragment.kt:            runCatching { emuThread.join() }
+src/android/app/src/main/java/org/yuzu/yuzu_emu/fragments/EmulationFragment.kt:        lateinit var emulationThread: Thread
+src/android/app/src/main/java/org/yuzu/yuzu_emu/fragments/EmulationFragment.kt:            emulationThread.join()
+src/android/app/src/main/java/org/yuzu/yuzu_emu/fragments/EmulationFragment.kt:            emulationThread = Thread({
+src/android/app/src/main/java/org/yuzu/yuzu_emu/fragments/EmulationFragment.kt:            emulationThread.start()
+src/android/app/src/main/java/org/yuzu/yuzu_emu/fragments/EmulationFragment.kt:                    emulationThread = Thread({
+src/android/app/src/main/java/org/yuzu/yuzu_emu/fragments/EmulationFragment.kt:                    emulationThread.start()
+src/android/app/src/main/java/org/yuzu/yuzu_emu/network/NetPlayManager.kt:        Thread {
+src/android/app/src/main/java/org/yuzu/yuzu_emu/ui/main/MainActivity.kt:        Thread {
+src/android/app/src/main/java/org/yuzu/yuzu_emu/ui/main/MainActivity.kt:                runOnUiThread {
+src/android/app/src/main/java/org/yuzu/yuzu_emu/ui/main/MainActivity.kt:                    runOnUiThread {
+src/android/app/src/main/java/org/yuzu/yuzu_emu/ui/main/MainActivity.kt:                    runOnUiThread {
+src/android/app/src/main/java/org/yuzu/yuzu_emu/utils/CustomSettingsHandler.kt:            activity.runOnUiThread {
+src/android/app/src/main/java/org/yuzu/yuzu_emu/utils/CustomSettingsHandler.kt:            activity.runOnUiThread {
+src/android/app/src/main/java/org/yuzu/yuzu_emu/utils/InstallableActions.kt:            activity.runOnUiThread {
+src/android/app/src/main/jni/native.cpp:    JNIEnv* env = Common::Android::GetEnvForThread();
+src/android/app/src/main/jni/native.cpp:    JNIEnv* env = Common::Android::GetEnvForThread();
+src/android/app/src/main/jni/native.cpp:    JNIEnv* env = Common::Android::GetEnvForThread();
+src/android/app/src/main/jni/native.cpp:    JNIEnv* env = Common::Android::GetEnvForThread();
+src/android/app/src/main/jni/native.cpp:        fmt::format_to(std::back_inserter(result), "CPUs: {}\n{} Threads",
+src/android/app/src/main/res/values/strings.xml:    <string name="pipeline_worker_cores">Pipeline Worker Threads</string>
