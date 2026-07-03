@@ -14,7 +14,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          submodules: recursive  # Garante que dependências nativas como dynarmic e externals venham completas
+          submodules: recursive
 
       - uses: actions/setup-java@v4
         with:
@@ -32,8 +32,8 @@ jobs:
         working-directory: ./src/android
         run: chmod +x gradlew || true
 
-      # Passamos as propriedades de Build desativando o compilador de desktop (QT) e avisos estritos
+      # Forçamos o Gradle a ignorar qualquer outra ABI que não seja a do celular
       - name: Build APK
         working-directory: ./src/android
         run: |
-          ./gradlew assembleRelease             -Pandroid.injected.build.abi=arm64-v8a             -Pandroid.download.missing.dependencies=true             -Pandroid.compileSdkVersion=34             -Pandroid.targetSdkVersion=33
+          ./gradlew assembleRelease             -Pandroid.injected.build.abi=arm64-v8a             -Pandroid.download.missing.dependencies=true             -Pandroid.compileSdkVersion=34             -Pandroid.targetSdkVersion=33             -Pext.targetAbi=arm64-v8a
