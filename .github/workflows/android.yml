@@ -33,7 +33,9 @@ jobs:
         working-directory: ./src/android
         run: chmod +x gradlew || true
 
+      # Executa restringindo o paralelismo e injetando parâmetros de escape para o CMake nativo
       - name: Build APK
         working-directory: ./src/android
         run: |
-          ./gradlew assembleRelease             -Pandroid.injected.build.abi=arm64-v8a             -Pandroid.download.missing.dependencies=true
+          export ccache_disable=1
+          ./gradlew assembleRelease             -Pandroid.injected.build.abi=arm64-v8a             -Pandroid.download.missing.dependencies=true             -Pandroid.compileSdkVersion=34             -Pandroid.targetSdkVersion=33             -Pandroid.injected.modules.arguments="-DCMAKE_BUILD_TYPE=Release,-DENABLE_WERROR=OFF,-DYUZU_USE_BUNDLED_FFMPEG=ON"             --max-workers=2
