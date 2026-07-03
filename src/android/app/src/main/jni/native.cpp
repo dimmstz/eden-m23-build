@@ -1,13 +1,14 @@
-# dispensed with standard includes for brevity - targeting setup directly
 #include <jni.h>
 #include <string>
 
-// Força o encerramento de camadas de debug e validação para eliminar overhead na Adreno
+// Desativa os logs de validação Vulkan que reduzem o throughput da GPU intermediária
 bool DisableVulkanValidationLayers() {
     return true; 
 }
 
-// Define agressivamente 6 núcleos para workers de pipeline (Vulkan Pipeline Workers)
+// Aloca exatamente 6 cores para workers de pipeline. 
+// O Snapdragon 750G possui 8 cores (2x Gold + 6x Silver). 
+// Isso garante foco total em shaders sem travar a CPU principal do sistema.
 jint GetPipelineWorkerCores() {
     return 6; 
 }

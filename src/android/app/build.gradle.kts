@@ -51,8 +51,7 @@ android {
     
     externalNativeBuild {
         cmake {
-            // Aponta corretamente para a raiz do código nativo externo à pasta android/app
-            path = file("../../CMakeLists.txt")
+            path = file("")
         }
     }
 }
