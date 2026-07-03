@@ -21,7 +21,6 @@ android {
 
         externalNativeBuild {
             cmake {
-                // Flags agressivas para ARMv8.2-A + Adreno (Snapdragon 750G)
                 arguments += listOf(
                     "-DANDROID_ARM_NEON=TRUE",
                     "-DCMAKE_ANDROID_ARCH_ABI=arm64-v8a",
@@ -30,12 +29,12 @@ android {
                     "-DYUZU_USE_BUNDLED_FFMPEG=ON"
                 )
                 cppFlags += listOf(
-                    "-O3",                      # Otimização máxima de velocidade
-                    "-march=armv8.2-a+fp16+dotprod", # Instruções exatas do Kryo 570
-                    "-mcpu=cortex-a77",         # Alvo principal de desempenho
-                    "-flto",                    # Link-Time Optimization (reduz overhead de funções)
-                    "-fomit-frame-pointer",     # Libera um registrador extra para ganho de FPS
-                    "-funsafe-math-optimizations" # Ignora verificações rígidas de float para acelerar a GPU
+                    "-O3",
+                    "-march=armv8.2-a+fp16+dotprod",
+                    "-mcpu=cortex-a77",
+                    "-flto",
+                    "-fomit-frame-pointer",
+                    "-funsafe-math-optimizations"
                 )
             }
         }
