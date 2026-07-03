@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           submodules: recursive
-          fetch-depth: 0
+          fetch-depth: 1 # Build raso para poupar espaço e velocidade
 
       - uses: actions/setup-java@v4
         with:
@@ -24,17 +24,13 @@ jobs:
 
       - uses: android-actions/setup-android@v3
 
-      - name: Install Linux Build Dependencies
+      - name: Install Compilers
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential cmake ninja-build ccache libgl1-mesa-dev git
+          sudo apt-get install -y build-essential cmake ninja-build git
 
-      - name: Grant permissions
-        working-directory: ./src/android
-        run: chmod +x gradlew || true
-
-      - name: Build APK
+      - name: Build APK Extreme
         working-directory: ./src/android
         run: |
-          export ccache_disable=1
-          ./gradlew assembleRelease             -Pandroid.injected.build.abi=arm64-v8a             -Pandroid.download.missing.dependencies=true             -Pandroid.compileSdkVersion=34             -Pandroid.targetSdkVersion=33             -Pandroid.injected.modules.arguments="-DCMAKE_BUILD_TYPE=Release,-DENABLE_WERROR=OFF,-DYUZU_USE_BUNDLED_FFMPEG=ON"             --max-workers=2
+          chmod +x gradlew
+          ./gradlew assembleRelease --max-workers=2
