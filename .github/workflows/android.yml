@@ -21,9 +21,11 @@ jobs:
 
       - uses: android-actions/setup-android@v3
 
-      - name: Install Exact NDK Version
+      - name: Update SDK Tools and Install NDK
         run: |
-          ${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager --install "ndk;26.2.13676358"
+          # Atualiza o gerenciador para aceitar os XMLs novos do Google
+          ${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager --update
+          ${ANDROID_HOME}/cmdline-tools/latest/bin/sdkmanager "ndk;26.2.13676358"
           echo "ndk.dir=${ANDROID_HOME}/ndk/26.2.13676358" > src/android/local.properties
 
       - name: Grant permissions
