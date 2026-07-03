@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
-
     <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
     <uses-feature android:name="android.hardware.gamepad" android:required="false" />
     <uses-feature android:name="android.hardware.leanback" android:required="false" />
     <uses-feature android:name="android.hardware.vulkan.version" android:version="0x401000" android:required="true" />
-
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.NFC" />
@@ -20,13 +18,12 @@
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
-
     <application 
         android:hardwareAccelerated="true" 
         android:largeHeap="true" 
         android:extractNativeLibs="false"
         android:name="org.yuzu.yuzu_emu.YuzuApplication"
-        android:label="${appNameBase}${appNameSuffix}"
+        android:label="\${appNameBase}\${appNameSuffix}"
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:allowBackup="true"
@@ -39,16 +36,12 @@
         android:dataExtractionRules="@xml/data_extraction_rules_api_31"
         tools:targetApi="33"
         android:enableOnBackInvokedCallback="true">
-
         <meta-data android:name="com.samsung.android.gamehub" android:value="true" />
         <meta-data android:name="com.xiaomi.gamecenter.sdk.service.enabled" android:value="true" />
         <meta-data android:name="com.asus.gamecenter.gamebooster" android:value="true" />
         <meta-data android:name="com.oneplus.gamespace.gamebooster" android:value="true" />
         <meta-data android:name="android.game_mode_config" android:resource="@xml/game_mode_config" />
-
-        <activity android:name="org.yuzu.yuzu_emu.ui.main.MainActivity"
-            android:exported="true"
-            android:theme="@style/Theme.Yuzu.Splash.Main">
+        <activity android:name="org.yuzu.yuzu_emu.ui.main.MainActivity" android:exported="true" android:theme="@style/Theme.Yuzu.Splash.Main">
             <intent-filter>
                 <action android:name="com.miui.gamecenter.GAME_BOOSTER_LAUNCH"/>
                 <action android:name="android.intent.action.MAIN" />
@@ -57,21 +50,9 @@
                 <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name="org.yuzu.yuzu_emu.features.settings.ui.SettingsActivity"
-            android:theme="@style/Theme.Yuzu.Main"
-            android:label="@string/preferences_settings"/>
-
-        <activity android:name="org.yuzu.yuzu_emu.features.settings.ui.SettingsSubscreenActivity"
-            android:theme="@style/Theme.Yuzu.Main"
-            android:label="@string/preferences_settings"/>
-
-        <activity android:name="org.yuzu.yuzu_emu.activities.EmulationActivity"
-            android:theme="@style/Theme.Yuzu.Main"
-            android:launchMode="singleTop"
-            android:supportsPictureInPicture="true"
-            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout|uiMode"
-            android:exported="true">
+        <activity android:name="org.yuzu.yuzu_emu.features.settings.ui.SettingsActivity" android:theme="@style/Theme.Yuzu.Main" android:label="@string/preferences_settings"/>
+        <activity android:name="org.yuzu.yuzu_emu.features.settings.ui.SettingsSubscreenActivity" android:theme="@style/Theme.Yuzu.Main" android:label="@string/preferences_settings"/>
+        <activity android:name="org.yuzu.yuzu_emu.activities.EmulationActivity" android:theme="@style/Theme.Yuzu.Main" android:launchMode="singleTop" android:supportsPictureInPicture="true" android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout|uiMode" android:exported="true">
             <intent-filter>
                 <action android:name="android.nfc.action.TECH_DISCOVERED" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -88,28 +69,16 @@
             </intent-filter>
             <meta-data android:name="android.nfc.action.TECH_DISCOVERED" android:resource="@xml/nfc_tech_filter" />
         </activity>
-
         <service android:name="org.yuzu.yuzu_emu.utils.ForegroundService" android:foregroundServiceType="specialUse">
             <property android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE" android:value="Keep emulation running in background"/>
         </service>
-
-        <provider android:name="org.yuzu.yuzu_emu.features.DocumentProvider"
-            android:authorities="${applicationId}.user"
-            android:grantUriPermissions="true"
-            android:exported="true"
-            android:permission="android.permission.MANAGE_DOCUMENTS">
+        <provider android:name="org.yuzu.yuzu_emu.features.DocumentProvider" android:authorities="\${applicationId}.user" android:grantUriPermissions="true" android:exported="true" android:permission="android.permission.MANAGE_DOCUMENTS">
             <intent-filter>
                 <action android:name="android.content.action.DOCUMENTS_PROVIDER" />
             </intent-filter>
         </provider>
-
-        <provider android:name="androidx.core.content.FileProvider"
-            android:authorities="${applicationId}.provider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths" />
+        <provider android:name="androidx.core.content.FileProvider" android:authorities="\${applicationId}.provider" android:exported="false" android:grantUriPermissions="true">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths" />
         </provider>
-
     </application>
 </manifest>
