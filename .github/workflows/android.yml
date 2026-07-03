@@ -33,7 +33,6 @@ jobs:
         working-directory: ./src/android
         run: chmod +x gradlew || true
 
-      # Executa restringindo o paralelismo e injetando parâmetros de escape para o CMake nativo
       - name: Build APK
         working-directory: ./src/android
         run: |
