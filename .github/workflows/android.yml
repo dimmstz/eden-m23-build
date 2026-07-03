@@ -32,8 +32,8 @@ jobs:
         working-directory: ./src/android
         run: chmod +x gradlew || true
 
-      # Forçamos o Gradle a ignorar qualquer outra ABI que não seja a do celular
+      # Injetamos argumentos diretamente nas variáveis do CMake para suprimir erros de warning
       - name: Build APK
         working-directory: ./src/android
         run: |
-          ./gradlew assembleRelease             -Pandroid.injected.build.abi=arm64-v8a             -Pandroid.download.missing.dependencies=true             -Pandroid.compileSdkVersion=34             -Pandroid.targetSdkVersion=33             -Pext.targetAbi=arm64-v8a
+          ./gradlew assembleRelease             -Pandroid.injected.build.abi=arm64-v8a             -Pandroid.download.missing.dependencies=true             -Pandroid.compileSdkVersion=34             -Pandroid.targetSdkVersion=33             -Pext.targetAbi=arm64-v8a             -Pandroid.disableAutomaticComponentCreation=true
