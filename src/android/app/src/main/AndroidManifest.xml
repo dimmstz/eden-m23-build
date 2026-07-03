@@ -1,21 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!--
-SPDX-FileCopyrightText: 2023 yuzu Emulator Project
-SPDX-License-Identifier: GPL-3.0-or-later
-
-SPDX-FileCopyrightText: 2025 Eden Emulator Project
-SPDX-License-Identifier: GPL-3.0-or-later
--->
-<!--
-SPDX-FileCopyrightText: Eden Emulator Project
-SPDX-License-Identifier: GPL-3.0-or-later
--->
-
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+
     <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
     <uses-feature android:name="android.hardware.gamepad" android:required="false" />
-    <uses-feature android:name="android.software.leanback" android:required="false" />
+    <uses-feature android:name="android.hardware.leanback" android:required="false" />
     <uses-feature android:name="android.hardware.vulkan.version" android:version="0x401000" android:required="true" />
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -33,7 +21,10 @@ SPDX-License-Identifier: GPL-3.0-or-later
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
 
-    <application android:hardwareAccelerated="true" android:largeHeap="true" android:hardwareAccelerated="true" android:largeHeap="true" android:hardwareAccelerated="true" android:largeHeap="true" android:extractNativeLibs="false"
+    <application 
+        android:hardwareAccelerated="true" 
+        android:largeHeap="true" 
+        android:extractNativeLibs="false"
         android:name="org.yuzu.yuzu_emu.YuzuApplication"
         android:label="${appNameBase}${appNameSuffix}"
         android:icon="@mipmap/ic_launcher"
@@ -55,8 +46,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
         <meta-data android:name="com.oneplus.gamespace.gamebooster" android:value="true" />
         <meta-data android:name="android.game_mode_config" android:resource="@xml/game_mode_config" />
 
-        <activity
-            android:name="org.yuzu.yuzu_emu.ui.main.MainActivity"
+        <activity android:name="org.yuzu.yuzu_emu.ui.main.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.Yuzu.Splash.Main">
             <intent-filter>
@@ -68,18 +58,15 @@ SPDX-License-Identifier: GPL-3.0-or-later
             </intent-filter>
         </activity>
 
-        <activity
-            android:name="org.yuzu.yuzu_emu.features.settings.ui.SettingsActivity"
+        <activity android:name="org.yuzu.yuzu_emu.features.settings.ui.SettingsActivity"
             android:theme="@style/Theme.Yuzu.Main"
             android:label="@string/preferences_settings"/>
 
-        <activity
-            android:name="org.yuzu.yuzu_emu.features.settings.ui.SettingsSubscreenActivity"
+        <activity android:name="org.yuzu.yuzu_emu.features.settings.ui.SettingsSubscreenActivity"
             android:theme="@style/Theme.Yuzu.Main"
             android:label="@string/preferences_settings"/>
 
-        <activity
-            android:name="org.yuzu.yuzu_emu.activities.EmulationActivity"
+        <activity android:name="org.yuzu.yuzu_emu.activities.EmulationActivity"
             android:theme="@style/Theme.Yuzu.Main"
             android:launchMode="singleTop"
             android:supportsPictureInPicture="true"
@@ -106,8 +93,7 @@ SPDX-License-Identifier: GPL-3.0-or-later
             <property android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE" android:value="Keep emulation running in background"/>
         </service>
 
-        <provider
-            android:name=".features.DocumentProvider"
+        <provider android:name="org.yuzu.yuzu_emu.features.DocumentProvider"
             android:authorities="${applicationId}.user"
             android:grantUriPermissions="true"
             android:exported="true"
@@ -117,13 +103,11 @@ SPDX-License-Identifier: GPL-3.0-or-later
             </intent-filter>
         </provider>
 
-        <provider
-            android:name="androidx.core.content.FileProvider"
+        <provider android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
             android:exported="false"
             android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
 
