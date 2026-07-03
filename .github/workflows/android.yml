@@ -19,14 +19,12 @@ jobs:
           distribution: temurin
           java-version: 17
 
-      # Configura o runner e já aceita automaticamente todas as licenças do SDK/NDK
       - uses: android-actions/setup-android@v3
 
       - name: Grant permissions
         working-directory: ./src/android
         run: chmod +x gradlew || true
 
-      # O segredo está na flag auto-download que força o Gradle a baixar o NDK correto sozinho
       - name: Build APK
         working-directory: ./src/android
-        run: ./gradlew assembleRelease -Pandroid.injected.build.abi=arm64-v8a --android.download.missing.dependencies=true
+        run: ./gradlew assembleRelease -Pandroid.injected.build.abi=arm64-v8a -Pandroid.download.missing.dependencies=true
