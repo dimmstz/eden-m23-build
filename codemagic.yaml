@@ -6,7 +6,15 @@ workflows:
     scripts:
       - name: Build
         script: |
-          npm install
-          cd android && ./gradlew assembleRelease
+          npm install --legacy-peer-deps || npm install
+          if [ -f "package.json" ] && grep -q "expo" package.json; then
+            npx expo prebuild --platform android
+          fi
+          if [ -d "android" ]; then
+            cd android && ./gradlew assembleRelease
+          else
+            ./gradlew assembleRelease
+          fi
     artifacts:
       - android/app/build/outputs/apk/**/*.apk
+      - app/build/outputs/apk/**/*.apk
