@@ -6,14 +6,23 @@ workflows:
     scripts:
       - name: Build
         script: |
-          npm install --legacy-peer-deps || npm install
+          # Se for Expo, precisamos limpar tudo e instalar com cuidado para não quebrar a CLI do Expo
           if [ -f "package.json" ] && grep -q "expo" package.json; then
-            npx expo prebuild --platform android
+            npm install --legacy-peer-deps
+            # Força a correção de módulos corrompidos ou ausentes que o Expo usa
+            npm install ajv schema-utils --no-save --legacy-peer-deps
+            npx expo prebuild --platform android --clean
+          else
+            npm install --legacy-peer-deps || npm install
           fi
+          
+          # Executa o build dependendo de onde a pasta foi gerada
           if [ -d "android" ]; then
             cd android && ./gradlew assembleRelease
-          else
+          elif [ -f "gradlew" ]; then
             ./gradlew assembleRelease
+          else
+            echo "❌ Erro: Pasta nativa Android não encontrada!" && exit 1
           fi
     artifacts:
       - android/app/build/outputs/apk/**/*.apk
